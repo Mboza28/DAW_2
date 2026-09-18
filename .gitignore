@@ -1,0 +1,55 @@
+==========================================
+
+.gitignore para 2º DAW
+
+==========================================
+
+1. Dependencias de JavaScript / Node.js
+
+node_modules/
+npm-debug.log
+yarn-error.log
+
+2. Entornos virtuales y variables (¡SEGURIDAD!)
+
+NUNCA se suben las contraseñas o tokens de las bases de datos
+
+.env
+.env.local
+.env.development
+.env.production
+
+3. Compilados de Java / Spring Boot (Entorno Servidor)
+
+target/
+*.class
+*.jar
+*.war
+.mvn/
+
+4. Archivos temporales de Editores e IDEs
+
+.vscode/
+.idea/
+*.suo
+.ntvs
+*.njsproj
+*.sln
+*.sw?
+
+5. Archivos basura del Sistema Operativo
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+6. Logs y bases de datos locales
+
+*.log
+*.sqlite
+*.db
