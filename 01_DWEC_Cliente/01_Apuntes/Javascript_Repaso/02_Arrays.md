@@ -1,4 +1,4 @@
-# Apuntes Entorno Cliente (DWEC) - Día 1: Arrays y sus Métodos
+# Apuntes Entorno Cliente (DWEC) - Día 1: Arrays y sus Métodos básicos
 
 ## 1. Introducción a los Arrays
 
@@ -126,6 +126,32 @@ console.log(numeros); // [1, 2, 5, 12, 40]
 
 // Ordenar de mayor a menor (Descendente)
 numeros.sort((a, b) => b - a); 
+
+//Ordenar por varias condiciones
+let ninjas = [
+    { nombre: "Kakashi", clan: "Hatake", nivelChakra: 1500 },
+    { nombre: "Naruto", clan: "Uzumaki", nivelChakra: 9000 },
+    { nombre: "Kushina", clan: "Uzumaki", nivelChakra: 5000 },
+    { nombre: "Sasuke", clan: "Uchiha", nivelChakra: 2500 },
+    { nombre: "Itachi", clan: "Uchiha", nivelChakra: 3000 },
+    { nombre: "Sakumo", clan: "Hatake", nivelChakra: 1800 }
+];
+
+ninjas.sort((a, b) => {
+    // 1. Primera condición: Orden alfabético por clan (A-Z)
+    if (a.clan > b.clan) {
+        return 1;
+    }
+    if (a.clan < b.clan) {
+        return -1;
+    }
+
+    // 2. Segunda condición: Si el código llega a esta línea, es que a.clan === b.clan
+    // Resolvemos el empate ordenando por chakra de MAYOR a MENOR usando una resta
+    return b.nivelChakra - a.nivelChakra;
+});
+
+console.log(ninjas);
 ```
 
 ---
@@ -146,17 +172,10 @@ console.log(letras.lastIndexOf("b")); // 3
 console.log(letras.indexOf("x"));     // -1 (No existe)
 
 let nombres = ["Ana", "Antonio", "Beatriz"];
-// ¿Hay algún nombre que empiece por A? Lo veremos mejor con 'filter' abajo.
+// ¿Hay algún nombre que empiece por A? Se puede utilizar startsWith o 'filter'.
 ```
 
----
-
-## 8. ITERACIÓN Y MÉTODOS FUNCIONALES (ES6+)
-
-Estos métodos son estándar en el JavaScript moderno (ES6+) y no modifican el array original, reciben una función (callback) que se ejecuta por cada elemento
-
-### `includes(elemento)`
-Es la versión moderna de `indexOf` cuando solo quieres saber si algo existe o no. Devuelve `true` o `false` (mucho más limpio que comprobar si `indexOf > -1`).
+*   **`includes(elemento)`**: Es la versión moderna de `indexOf` cuando solo quieres saber si algo existe o no. Devuelve `true` o `false` (mucho más limpio que comprobar si `indexOf > -1`).
 
 ```javascript
 let coches = ["ford", "seat", "audi"];
@@ -164,8 +183,35 @@ console.log(coches.includes("seat")); // true
 console.log(coches.includes("bmw"));  // false
 ```
 
-### `forEach()` (Recorrer)
-La forma más cómoda de recorrer un array sin tener que montar un bucle `for` clásico.
+---
+
+## 8. Buscar objetos o condiciones
+
+* **`find`** devuelve el **primer valor** que cumpla la condición.
+* **`findIndex`** devuelve su **posición**.
+
+```javascript
+let notas = [4, 5, 8, 3, 9];
+let primerAprobado = notas.find(nota => nota >= 5); // 5
+```
+
+---
+
+## 9. Comprobaciones booleanas
+
+* **`some`**: ¿Al menos **un** elemento cumple la condición?
+* **`every`**: ¿**Todos** los elementos cumplen la condición?
+
+```javascript
+let haySuspensos = notas.some(nota => nota < 5); // true
+let todosAprobados = notas.every(nota => nota >= 5); // false
+```
+
+---
+
+## 10. Recorrer un Array 
+
+La forma más cómoda de recorrer un array sin tener que montar un bucle `for` clásico es con el método `forEach()`
 
 ```javascript
 let frutasListado = ["manzana", "pera", "uva"];
@@ -178,73 +224,4 @@ frutasListado.forEach(function(fruta, indice) {
 frutasListado.forEach((fruta, indice) => {
     console.log(`En la posición ${indice} está la ${fruta}`);
 });
-```
-
-### `map()` (Transformar y Mapear)
-Crea un **nuevo array** aplicando una transformación a cada elemento. Es vital para procesar y adaptar información.
-
-**Conceptos clave del `map`:**
-
-1. **Inmutabilidad:** Jamás altera el array original.
-2. **Longitud exacta:** El array resultante siempre tendrá el mismo tamaño que el original. Si entran 5 elementos, salen 5 elementos transformados.
-3. **Parámetros:** La función callback recibe hasta 3 datos: `(elemento, indice, arrayCompleto)`.
-
-**Ejemplo 1: Transformación matemática básica**
-```javascript
-let precios = [10, 20, 30];
-// Aplicamos el 21% de IVA a cada precio
-let preciosConIva = precios.map(precio => precio * 1.21); 
-console.log(preciosConIva); // [12.1, 24.2, 36.3]
-```
-
-**Ejemplo 2: Uso del parámetro del índice (index)**
-Muy útil para crear listas numeradas o asignar IDs.
-```javascript
-let frutas = ["manzana", "pera", "uva"];
-let menu = frutas.map((fruta, index) => `${index + 1}.- ${fruta}`);
-console.log(menu); // ["1.- manzana", "2.- pera", "3.- uva"]
-```
-
-**Ejemplo 3: Extraer datos de un array de objetos (El uso más profesional)**
-Imagina que recibes un listado complejo de usuarios de una base de datos, pero tú solo necesitas un array simple con sus nombres para mostrarlos en un desplegable de HTML.
-```javascript
-let usuarios = [
-    { id: 1, nombre: "Ana", edad: 25 },
-    { id: 2, nombre: "Juan", edad: 30 },
-    { id: 3, nombre: "Paco", edad: 19 }
-];
-
-// Extraemos únicamente la propiedad "nombre"
-let soloNombres = usuarios.map(usuario => usuario.nombre);
-console.log(soloNombres); // ["Ana", "Juan", "Paco"]
-```
-
-### `filter()` (Filtrar)
-
-Crea un **nuevo array** solo con los elementos que cumplan una condición (que devuelvan `true`). 
-
-```javascript
-let listaNombres = ["Ana", "Antonio", "Beatriz", "Alberto"];
-let empiezanConA = listaNombres.filter(nombre => nombre.startsWith("A"));
-// ["Ana", "Antonio", "Alberto"]
-```
-
-### `find()` y `findIndex()` (Buscar objetos o condiciones)
-
-* `find` devuelve el **primer valor** que cumpla la condición.
-* `findIndex` devuelve su **posición**.
-
-```javascript
-let notas = [4, 5, 8, 3, 9];
-let primerAprobado = notas.find(nota => nota >= 5); // 5
-```
-
-### `some()` y `every()` (Comprobaciones booleanas)
-
-* **`some`**: ¿Al menos **un** elemento cumple la condición?
-* **`every`**: ¿**Todos** los elementos cumplen la condición?
-
-```javascript
-let haySuspensos = notas.some(nota => nota < 5); // true
-let todosAprobados = notas.every(nota => nota >= 5); // false
 ```
