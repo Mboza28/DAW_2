@@ -72,8 +72,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Ejercicio 3
 
+    const esMalicioso = (nombre) => nombre.startsWith("HK") || nombre.startsWith("B2")
 
-    const calculoCritico = (dañoBase) => {
+    let nombre1 = "HKP34R"
+    let nombre2 = "B2LASD"
+    let nombre3 = "CKALSK"
+    const calculoCritico = (dañoBase, malicioso) => {
         if(esMalicioso(nombre)){
             return (dañoBase * 2) + 15
         }else{
@@ -81,7 +85,6 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    const esMalicioso = (nombre) => nombre.startsWith("HK") || nombre.startsWith("B2")
     if(esMalicioso(nombre)){
         setTimeout(() => {
             console.log(`El droide está infectado`)
@@ -90,10 +93,8 @@ window.addEventListener("DOMContentLoaded", () => {
         }, 2000)
     }
 
-    let nombre = "HKP34R"
-    let nombre2 = "B2LASD"
-    let nombre3 = "CKALSK"
-    esMalicioso(nombre)
+    
+    esMalicioso(nombre1)
     esMalicioso(nombre2)
     esMalicioso(nombre3)
 
