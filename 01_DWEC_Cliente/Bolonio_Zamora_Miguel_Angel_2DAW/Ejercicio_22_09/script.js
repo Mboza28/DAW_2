@@ -1,7 +1,6 @@
 window.addEventListener("DOMContentLoaded", () => {
 
-    // 1. Crear una funcion para evaluar la vitalidad de los tripulantes llamada evaluarVitalidad
-    // Recibe nombre, vida total y vida restante. Calcular el % de salud del tripulante
+    // Ejercicio 1 
 
     let personajes = [
         {
@@ -68,34 +67,83 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     console.log(calcularRecompensa(4,"Oro"))
+    console.log(calcularRecompensa(8,"Diamantes"))
 
 
     // Ejercicio 3
 
-    const esMalicioso = nombre => nombre.startsWith("HK") || nombre.startsWith("B2")
 
-    let nombre1 = "HKP34R"
-    let nombre2 = "B2LASD"
-    let nombre3 = "CKALSK"
-    const calculoCritico = (dañoBase, malicioso) => {
-        if(malicioso){
-            return (dañoBase * 2) + 15
-        }else{
-            return (dañoBase * 3) + 15
+    const calculoDanio = (danioBase, infectado) => {
+        if(infectado){
+            return (danioBase * 2) + 15
+        } else {
+            return (danioBase * 3) + 15
         }
     }
 
-    if(esMalicioso(nombre)){
+    const analizarDroide = (nombre, danioBase) => {
+        const infectado = nombre => nombre.startsWith("HK") || nombre.startsWith("B2")
+        let danioTotal
         setTimeout(() => {
-            console.log(`El droide está infectado`)
-            let dañoTotal = calculoCritico(100)
-            console.log(`El droide ${nombre} tiene un daño total de ${dañoTotal}`)
-        }, 2000)
+            if(infectado(nombre)){
+                danioTotal = calculoDanio(danioBase, infectado(nombre)) 
+                console.log(`El droide ${nombre} está infectado y tiene ${danioTotal}`)
+            
+            }else{
+                danioTotal = calculoDanio(danioBase, infectado(nombre))
+                console.log(`El droide ${nombre} NO está infectado y tiene ${danioTotal}`)
+            }
+        }, 7000)
     }
 
-    
-    esMalicioso(nombre1)
-    esMalicioso(nombre2)
-    esMalicioso(nombre3)
+    analizarDroide("HK123O", 120)
+    analizarDroide("B2123O", 180)
+    analizarDroide("PLKJA", 120)
 
+    // Ejercicio 4
+
+    const inventario = [
+        { nombre: "Espada de Plata", danioBase: 50, durabilidad: 80, raro: true },
+        { nombre: "Hacha Rathalos", danioBase: 20, durabilidad: 15, raro: false },
+        { nombre: "Arco de Qurupeco", danioBase: 35, durabilidad: 100, raro: true },
+        { nombre: "Daga Felyne", danioBase: 10, durabilidad: 5, raro: false }
+    ];
+
+    let inventarioNuevo = inventario.map(elemento => {
+        let estado
+        let danioFinal
+        if(elemento.raro === true){
+            danioFinal = elemento.danioBase * 1.5
+        }else{
+            danioFinal = elemento.danioBase
+        }
+        if(elemento.durabilidad < 50){
+            estado = "Roto"
+        } else {
+            estado = "Operativo"
+        }
+        return {
+            nombre: elemento.nombre,
+            danioFinal: danioFinal,
+            estado: estado
+        }
+    })
+    console.log(inventarioNuevo)
+
+    let danioTotal
+    danioTotal = inventarioNuevo
+        .filter(arma => arma.estado === "Operativo")
+        .reduce((acumulador, elementoActual) => {
+            return acumulador + elementoActual.danioFinal
+        }, 0)
+
+
+    console.log(`El daño total de las armas operativas es de ${danioTotal}`)
+
+    if(danioTotal > 150){
+        console.log(`El equipo suma ${danioTotal} de daño total y está listo para matar al Rathian`)
+    }else{
+        console.log(`El equipo sólo suma ${danioTotal} de daño total. No es suficiente para enfrentarse al Rathian`)
+    }
+    
 })
