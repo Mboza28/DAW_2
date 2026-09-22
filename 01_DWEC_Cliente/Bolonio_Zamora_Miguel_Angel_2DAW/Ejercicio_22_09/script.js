@@ -72,13 +72,13 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Ejercicio 3
 
-    const esMalicioso = (nombre) => nombre.startsWith("HK") || nombre.startsWith("B2")
+    const esMalicioso = nombre => nombre.startsWith("HK") || nombre.startsWith("B2")
 
     let nombre1 = "HKP34R"
     let nombre2 = "B2LASD"
     let nombre3 = "CKALSK"
     const calculoCritico = (dañoBase, malicioso) => {
-        if(esMalicioso(nombre)){
+        if(malicioso){
             return (dañoBase * 2) + 15
         }else{
             return (dañoBase * 3) + 15
