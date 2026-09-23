@@ -117,6 +117,28 @@ let soloNombres = usuarios.map(usuario => usuario.nombre);
 console.log(soloNombres); // ["Ana", "Juan", "Paco"]
 ```
 
+**Ejemplo 4: Transformar un objeto en otro con propiedades distintas**
+Este método tiene un uso más potente, transformar la estructura de un array de objetos en otra completamente distinta.
+
+En lugar de devolver el mismo objeto modificado, podemos extraer propiedades, calcular otras nuevas en el momento incluso con condiciones y devolver un objeto literal nuevo por cada iteración.
+
+```javascript
+const usuarios = [
+  { id: 1, nombre: "Lucía", rol: "admin", activo: true },
+  { id: 2, nombre: "Miguel", rol: "user", activo: true }
+];
+
+// Creamos un array con una estructura de datos totalmente nueva
+const resumenUsuarios = usuarios.map((user) => {
+  return {
+    identificador: user.id,
+    nombreEnMayusculas: user.nombre.toUpperCase(),
+    etiqueta: user.rol === "admin" ? "Administrador" : "Estándar"
+  };
+});
+
+```
+
 ## 3. `.filter()` (Filtrar)
 
 Crea un **nuevo array** solo con los elementos que cumplan una condición (que devuelvan `true`). 
@@ -134,6 +156,8 @@ Aunque existe el objeto `Set` para eliminar duplicados, comprender cómo hacerlo
 Para lograrlo, necesitamos aprovechar dos características de estos métodos:
 1. **El segundo parámetro de filter:** Además del elemento actual, `filter` nos puede devolver la posición exacta que está leyendo en ese momento: `.filter((elemento, posicionActual) => ...)`
 2. **El comportamiento de indexOf:** Este método siempre devuelve el índice de la **PRIMERA** vez que encuentra un elemento en el array, ignorando si hay más repetidos más adelante.
+
+---
 
 ### El Patrón Lógico
 La condición para saber si un elemento está repetido es comparar si su posición actual en el bucle coincide con la primera vez que aparece en el array completo.
@@ -160,6 +184,25 @@ let ips = ["192.168.1.1", "10.0.0.5", "192.168.1.1"];
 // Si la primera vez que veo la IP coincide con la última vez que la veo, es única.
 let ipsUnicas = ips.filter(ip => ips.indexOf(ip) === ips.lastIndexOf(ip));
 // Resultado: ["10.0.0.5"]
+```
+
+### Encadenamiento (Chaining) de `.filter()` y `.map()`
+
+Los métodos de arrays que devuelven un nuevo array (map, filter, sort) se pueden encadenar unos con otros. Esto nos permite crear "tuberías" (pipelines) de datos de forma muy declarativa y limpia, sin crear variables intermedias.
+
+Un patrón muy común es **filtrar primero los elementos que nos interesan con .filter() y pasarle ese resultado inmediatamente a un .reduce() para calcular un total**.
+
+```javascript
+const inventario = [
+  { arma: "Espada", danio: 50, estado: "Operativo" },
+  { arma: "Arco", danio: 30, estado: "Roto" },
+  { arma: "Daga", danio: 15, estado: "Operativo" }
+];
+
+// Calculamos el daño total SOLO de las armas operativas en un solo bloque
+const danioTotalOperativo = inventario
+  .filter((item) => item.estado === "Operativo") // Filtra (ignora el Arco)
+  .reduce((total, item) => total + item.danio, 0); // Suma los restantes (50 + 15)
 ```
 
 ## 4. El objeto Set para eliminar duplicados de forma rápida
