@@ -17,7 +17,6 @@
     }
   },
   "packageManager": "pnpm@12.5.1",
-  "type": "module",
   "dependencies": {
     "prompt-sync": "^4.2.0"
   }
