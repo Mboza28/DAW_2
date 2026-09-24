@@ -121,6 +121,10 @@ Existen dos formas principales de instalar PNPM, pero el profesor hace una adver
 *   **❌ Forma no recomendada (a través de NPM):** Hacer `npm install -g pnpm` es tentador, pero asocia esa instalación de PNPM a la versión de Node que tengas activa en ese momento, lo que puede dar problemas de compatibilidad al cambiar de versión en el futuro.
 *   **✅ Forma recomendada (Script independiente):** Utilizar el script de instalación nativo por consola (`curl` o `wget` en Linux/Mac, o el script de PowerShell en Windows). Al instalarlo de forma independiente, no se casa con ninguna versión concreta de Node.
 
+* Para Windows abrimos una PowerShell e introducimos el siguiente comando: `Invoke-WebRequest https://get.pnpm.io/install.ps1 -UseBasicParsing | Invoke-Expression`
+
+* Para Linux en la terminal ejecutamos el siguiente comando: `curl -fsSL https://get.pnpm.io/install.sh | sh -`
+
 **Nota sobre versiones:**
 Durante el curso se trabajará principalmente con la **versión 12 de PNPM**, ya que da cobertura a la inmensa mayoría de desarrollos modernos (hasta Node v18). Si en el futuro un proyecto requiere una versión anterior, PNPM permite reconfigurarlo directamente desde el archivo `package.json` del proyecto y se autodescargará la versión correcta.
 
