@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded", () => {
     */
 
     const ordenarArray = (array) => {
-        let arrayOrdenado = array.sort((a,b) => a - b)
+        let arrayOrdenado = array.sort()
         console.log(arrayOrdenado)
     }
     let arrayNumerico = [4,8,3,10,5]
