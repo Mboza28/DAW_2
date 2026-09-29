@@ -1,0 +1,57 @@
+/* ESTILOS GENERALES */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-color: #2B807B;
+    text-align: center;
+}
+
+.centrar-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ESTILOS DEL CONTENEDOR */
+
+#contenedor {
+    height: 220px;
+    width: 450px;
+    background-color: whitesmoke;
+    border: 5px solid black;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+/* TEXTO */
+
+#color {
+    font-size: 71px;
+    font-weight: bold;
+}
+
+/* BOTON */
+
+#boton-color {
+    font-size: 30px;
+    color:white;
+    border-radius: 20px;
+    background-color: #008CBA;
+    margin: 15px;
+    padding: 10px 30px;
+    border: 3px solid #008CBA;
+    user-select: none;    /*evita que el usuario pueda seleccionar el texto*/
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+#boton-color:hover {
+    background-color: #05455A;
+
+}
