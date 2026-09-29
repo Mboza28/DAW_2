@@ -24,16 +24,24 @@ body {
 .contenedor {
     width: 80vh;
     max-width: 600px;
-    min-height: 500px;
+    min-height: 600px;
     padding: 20px;
     background-color: whitesmoke;
     border: 5px solid black;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .contenedor-interno {
     width: 80%;
-    
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
 }
 
 /* CONTENIDO */
@@ -53,7 +61,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin: 10px;
+    flex-grow: 1;
 }
 
 #autor {

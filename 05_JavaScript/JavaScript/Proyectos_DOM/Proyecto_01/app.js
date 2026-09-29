@@ -1,31 +1,62 @@
-/**
+/** 
+ * CODIGO DE CLASE CON FRAN
+  
     window.addEventListener("DOMContentLoaded", () => {
         const boton = document.querySelector('#boton-color');
         const color = document.getElementById('color');
 
-        const digitos = '0123456789ABCDEF';
+        boton.addEventListener('click', () => {
+            const digitos = '0123456789ABCDEF';
+            let colorHex = '#';
+
+            for(let i = 0; i < 6;i++){
+                let indiceRandom = Math.floor(Math.random() * 16);
+                colorHex += digitos[indiceRandom];
+            }
+
+            color.textContent = colorHex;
+            document.body.style.backgroundColor = colorHex;
+        });
+    })
+
+    Ejercicio REFACTORIZAR ESTE CODIGO
+*/
+
+/** Varias opciones de captura de elementos:
+        1. Hacerlo una unica vez fuera del listener en una funcion que ya se encargue de inicializar la aplicacion se considera la mejor practica.
+*/
+const iniciarApp = () => {
+    const boton = document.getElementById('boton-color');  // getElementById es más rápido que querySelector
+    const textoColor = document.getElementById('color');
+
+    boton.addEventListener('click', () => {
+        const nuevoColor = generarColorAleatorio();
+        textoColor.textContent = nuevoColor;
+        document.body.style.backgroundColor = nuevoColor;
+    });
+};
+
+const generarColorAleatorio = () => {
+    const digitos = '0123456789ABCDEF';
         let colorHex = '#';
 
         for(let i = 0; i < 6;i++){
             let indiceRandom = Math.floor(Math.random() * 16);
             colorHex += digitos[indiceRandom];
         }
+        return colorHex;
+}
 
-        boton.addEventListener('click', () => {    
-            color.textContent = colorAleatorio;
-            document.body.style.backgroundColor = colorAleatorio;
-        });
-    })
-    
-    Ejercicio REFACTORIZAR ESTE CODIGO 
-*/
+window.addEventListener("DOMContentLoaded", iniciarApp);
 
+/** 2. En caso de hacer una funcion y retornar los elementos capturados hacerlo con un objeto => return{boton, color} así no usamos indices
+    que pueden cambiar a lo largo del proyecto si añadimos o quitamos elementos, esto se llama Shorthand Properties, disponible desde ES6
+    al llamarse igual la variable que la clave JS lo entiende directamente, y podemos luego usar destructuración para extraerlos facilmente.
 
 const capturaElementos = () => {
     const boton = document.querySelector('#boton-color');
     const color = document.getElementById('color');
-    let elementos = [boton, color];
-    return elementos;
+    return {boton, color};
 }
 
 const generarColorAleatorio = () => {
@@ -40,10 +71,11 @@ const generarColorAleatorio = () => {
 }
 
 const utilidadBotonColor = () => {
-    capturaElementos()[0].addEventListener('click', () => {
+    const {boton, color} = capturaElementos(); 
+
+    boton.addEventListener('click', () => {
         let colorAleatorio = generarColorAleatorio();
-        let elementos = capturaElementos();
-        elementos[1].textContent = colorAleatorio;
+        color.textContent = colorAleatorio;
         document.body.style.backgroundColor = colorAleatorio;
     });
 }
@@ -51,3 +83,4 @@ const utilidadBotonColor = () => {
 window.addEventListener("DOMContentLoaded", () => {
     utilidadBotonColor();
 });
+*/ 
