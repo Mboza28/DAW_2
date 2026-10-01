@@ -25,6 +25,7 @@
 /** Varias opciones de captura de elementos:
         1. Hacerlo una unica vez fuera del listener en una funcion que ya se encargue de inicializar la aplicacion se considera la mejor practica.
 */
+
 const iniciarApp = () => {
     const boton = document.getElementById('boton-color');  // getElementById es más rápido que querySelector
     const textoColor = document.getElementById('color');

@@ -53,7 +53,6 @@ const server = http.createServer((request, response) => {
       response.end();
     });
     
-    
   }  
 
   else if(url === '/perfil' && method === 'GET'){
