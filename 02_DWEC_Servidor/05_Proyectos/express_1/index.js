@@ -38,7 +38,8 @@ app.get('/pepito', (request, response) => {
 
 // Con los dos puntos (:) podemos marcar parámetros dinamicos.
 app.get('/users/:userID', (request, response) => {
-    response.send('Hola usuario');
+    const id = request.params.userID
+    response.send(`Hola usuario con ID: ${id}`);
 });
 
 // Podemos concatenar ruteo paramétrico de esta forma y podemos acceder a esos parámetros mediante req.params ademas si usamos JSON.strongify pasamos esos
@@ -47,3 +48,54 @@ app.get('/users/:userID/books/:bookID', (req, res) => {
     res.send(`Mostrando parámetros .. ${JSON.stringify(req.params)}`);
 });
 
+
+/**
+   Así es como quedaria este codigo refactorizado profesionalmente, está en los apuntes también
+   
+   // 1. IMPORTACIONES
+    const express = require('express');
+    const helmet = require('helmet');
+
+    // 2. CONFIGURACIÓN INICIAL
+    const app = express();
+    const PORT = 4004;
+
+    // 3. MIDDLEWARES GLOBALES
+    // Helmet siempre de los primeros para proteger las cabeceras desde el inicio
+    app.use(helmet());
+
+    // Nuestro Logger personalizado
+    const myLogger = (req, res, next) => {
+        console.log(`Logger: ${req.method} ${req.originalUrl}`);
+        next(); // Pasa el control a la siguiente función
+    };
+    app.use(myLogger);
+
+    // 4. RUTEO (ENDPOINTS)
+    app.get('/', (req, res) => {
+        res.send('Hola desde el servidor');
+    });
+
+    app.get('/pepito', (req, res) => {
+        res.send('Has pedido algo a pepito');
+    });
+
+    // Rutas con parámetros
+    app.get('/users/:userID', (req, res) => {
+        // Es buena práctica extraer el dato para trabajar con él
+        const id = req.params.userID; 
+        res.send(`Hola usuario con ID: ${id}`);
+    });
+
+    // Rutas con múltiples parámetros
+    app.get('/users/:userID/books/:bookID', (req, res) => {
+        // Al usar JSON.stringify convertimos el objeto en una cadena de texto visible
+        res.send(`Mostrando parámetros de la URL: ${JSON.stringify(req.params)}`);
+    });
+
+    // 5. INICIO DEL SERVIDOR
+    // Siempre al final del archivo
+    app.listen(PORT, () => {
+        console.log(`App running en http://localhost:${PORT}`);
+    });
+*/
