@@ -10,9 +10,9 @@ Repositorio principal con los apuntes, ejercicios y proyectos del segundo año d
 *   **Diseño de Interfaces Web:** Maquetación avanzada, apuntes y animaciones.
 
 ## Stack Tecnológico
-*   **Frontend:** HTML5, CSS3, JavaScript (Vanilla y frameworks(React / Vue)).
-*   **Backend:** Node.js, express.
-*   **Bases de Datos:** MySQL / SQL / Mongo DB
-*   **Herramientas:** Git, GitHub, Linux, Docker, VS Code.
+*   **Frontend:** HTML5 | CSS3 | JavaScript | React | Vue
+*   **Backend:** Node.js | express
+*   **Bases de Datos:** MySQL | SQL | Mongo DB
+*   **Herramientas:** Git | GitHub | Linux | Docker | VS Code.
 
 ---
