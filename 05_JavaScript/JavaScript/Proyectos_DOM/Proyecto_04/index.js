@@ -25,7 +25,7 @@ window.addEventListener("DOMContentLoaded", () => {
             }
         }
         [segundosFormato, minutosFormato, horasFormato] = [formateoCronometro(segundos), formateoCronometro(minutos), formateoCronometro(horas)];
-        cronometro.innerText = `${horasFormato}:${minutosFormato}:${segundosFormato}`;  
+        cronometro.innerText = `${horasFormato}:${minutosFormato}:${segundosFormato}`;
     }
 
     function formateoCronometro(unidadTiempo) {
@@ -68,19 +68,19 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     botonReinicio.addEventListener('click', () => {
-        window.clearInterval(intervaloTiempo);
         cronometro.innerText = `00:00:00`;
         segundos = 0;
         minutos = 0;
         horas = 0;
         if(estadoCronometro === "iniciado") {
+            window.clearInterval(intervaloTiempo);
             botonInicioPausa.innerHTML = '<i class="bi bi-play-fill"></i>';
             botonInicioPausa.classList.remove('pausar');
             botonInicioPausa.classList.add('iniciar');
             estadoCronometro = "pausado";
         }
+
         listaVueltas.innerHTML = "";
         contadorVueltas = 0;
-    })
-
-})
+    });
+});
