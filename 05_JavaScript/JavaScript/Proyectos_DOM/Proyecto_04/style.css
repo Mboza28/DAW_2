@@ -1,0 +1,82 @@
+/* ESTILOS GENERALES */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    height: 100vh;
+}
+
+/* CONTENEDORES */
+
+.contenedor-principal {
+    width: 80vw;
+    max-width: 600px;
+    min-height: 350px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(47, 98, 100);
+}
+
+.contenedor-botones {
+    padding: 20px;
+}
+
+/* CRONOMETRO */
+
+#cronometro {
+    width: 100%;
+    font-size: 80px;
+    font-weight: bold;
+    user-select: none;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.parada{
+    width: 100%;
+    font-size: 30px;
+    font-weight: bold;
+    user-select: none;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 15px;
+}
+
+.vuelta {
+    font-size: 20px;
+    width: 80vw;
+}
+
+/* BOTONES */
+
+.boton {
+    width: 120px;
+    height: 80px;
+    font-size: 50px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+#boton-inicio-pausa.iniciar,
+#boton-inicio-pausa.iniciar i {
+    background-color: rgb(8, 114, 8);
+}
+
+#boton-inicio-pausa.pausar,
+#boton-inicio-pausa.pausar i {
+    background-color: rgb(204, 10, 10);
+}
+
+#boton-reiniciar {
+    background-color: rgb(212, 212, 17);
+}
