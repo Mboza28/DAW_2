@@ -37,5 +37,5 @@ app.get('/shinobis/:nombre/misiones/:idMision', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor levantado en http://localhost:${PORT}`)
+  console.log(`Servidor levantado en http://localhost:${PORT}`);
 });
