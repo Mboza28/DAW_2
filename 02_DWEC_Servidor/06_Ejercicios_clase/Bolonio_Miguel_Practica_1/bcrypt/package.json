@@ -1,5 +1,5 @@
 {
-  "name": "UUID",
+  "name": "bcrypt",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,12 +12,13 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "12.8.1",
+      "version": "12.9.1",
       "onFail": "download"
     }
   },
-  "packageManager": "pnpm@12.8.1",
+  "packageManager": "pnpm@12.9.1",
+  "type": "module",
   "dependencies": {
-    "uuid": "^14.0.2"
+    "bcrypt": "^6.0.0"
   }
 }

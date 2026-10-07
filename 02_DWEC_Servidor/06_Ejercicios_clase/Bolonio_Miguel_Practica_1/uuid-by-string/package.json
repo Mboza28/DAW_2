@@ -1,5 +1,5 @@
 {
-  "name": "Geocoder",
+  "name": "UUID",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -18,6 +18,6 @@
   },
   "packageManager": "pnpm@12.8.1",
   "dependencies": {
-    "geo-lib": "^0.4.0"
+    "uuid-by-string": "^4.0.0"
   }
 }

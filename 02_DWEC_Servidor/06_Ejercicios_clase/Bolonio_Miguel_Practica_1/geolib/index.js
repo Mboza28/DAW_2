@@ -1,14 +1,14 @@
-const geolib = require('geo-lib')
+const geoLib = require('geo-lib');
 
 // Podemos calcular la distancia entre dos puntos.
-let resultado = geolib.distance({
+let resultado = geoLib.distance({
     p1: { lat: 70.3369224, lon: 30.3411273 },
     p2: { lat: 59.8939528, lon: 10.6450348 }
 });
 
 
 // Aparte podemos calcular la velocidad que se debe emplear para ir del punto (p1) al punto (p2) en el tiempo indicado.
-let resultadoVelocidad = geolib.distance({
+let resultadoVelocidad = geoLib.distance({
     p1: { lat: 70.3369224, lon: 30.3411273 },
     p2: { lat: 59.8939528, lon: 10.6450348 },
     timeUsed: 18640
