@@ -1,9 +1,14 @@
 const express = require('express');
+const helmet = require('helmet');
+const series = require('./routes/series');
 
 // Inicializamos la aplicación con express
 const app = express();
 
 let PORT = 4004;
+
+// Creamos una constante para poder trabajar con la carpeta publica donde tendremos alojados los HTML
+const PUBLICA = 'publica';
 
 // Lanzamos el servidor al puerto
 app.listen(PORT, () => {
@@ -20,11 +25,20 @@ const myLogger =  (req, res, next) => {
 
 // Por ejemplo los middlewares son útiles para utilizar sets de directivas de seguridad como helmet, encargado de proteger las cabeceras de las peticiones request.
 // Simplemente usandolo nos sirve porque ya es código en sí. IMPORTANTE HAY QUE USAR LOS PARÉNTESIS PARA QUE SE EJECUTE PUESTO QUE SOLO LO HEMOS IMPORTADO.
-const helmet = require('helmet');
 app.use(helmet());
 
 // Y con esta instrucción le ponemos los middleware a nuestro código actual que va encapsulado en app en este caso, nuestro objeto que incluye express.
 app.use(myLogger);
+
+/** RUTEO */
+
+// Para servir archivos HTML estáticos como un index.html primero debemos hacer app.use(express.static)
+// y utilizar como argumento la variable donde hayamos guardado todo nuestro contenido estático.
+app.use(express.static(PUBLICA))
+
+// Usamos la funcionalidad de consumo de API que hemos creado en series.js
+app.use("/series", series);
+
 
 // Con .get podemos escuchar las rutas y realizar la funcion correspondiente
 app.get('/', (request, response) => {

@@ -220,5 +220,13 @@
 
         curarEquipo(equipoPokemon)
 
+        // Asi podemos copiar un objeto de forma inmutable hasta el primer nivel podemos usar el metodo Objetct.assign
+        const copiaMewtwo = Object.assign({}, mewtwo);
+
+        // Para hacer una deep copy a todos los niveles podemos hacer un parseo del objeto a JSON y despues volver a pasarlo a objeto con stringify
+        const copiaMewtwoDeep = JSON.parse(JSON.stringify(mewtwo));
+
+        // Para hacer una copia profunda de manera mucho mas simple tenemos el metodo structuredClone
+        const copiaMewtwoDeepEasy = structuredClone(mewtwo);
 
     });

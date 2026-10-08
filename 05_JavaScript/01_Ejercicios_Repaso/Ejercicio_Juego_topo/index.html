@@ -3,38 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Juego Topo</title>
+    <title>Atrapa el topo</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
 </head>
 
 <body>
-    <div class="contenedor">
-        <h1>🔨 JUEGO DEL TOPO 🐹</h1>
 
-        <h2 class="puntuacion">Puntos: <span id="puntos">0</span></h2>
+  <h1> GOLPEA AL TOPO </h1>
 
-        <h3>🏆 Récord: <span id="puntuacionMax">0</span></h3>
+  <h2 class="puntuacion">Puntos: <span id="puntos">0</span></h2>
 
-        <h3>Tiempo: <span id="tiempo">30</span>s</h3>
+  <h3>🏆 Récord: <span id="puntuacionMaxima">0</span></h3>
 
-        <div class="grid">
-            <div>
-            <div class="agujero topo" id="1"></div>
-            <div class="agujero" id="2"></div>
-            <div class="agujero" id="3"></div>
-            </div>
-            <div>
-            <div class="agujero" id="4"></div>
-            <div class="agujero" id="5"></div>
-            <div class="agujero" id="6"></div>
-            </div>
-            <div>
-            <div class="agujero" id="7"></div>
-            <div class="agujero" id="8"></div>
-            <div class="agujero" id="9"></div>
-            </div>
-        </div>
+  <h3>Tiempo: <span id="tiempo">30</span>s</h3>
+
+  <div class="grid">
+    <div>
+      <div class="agujero" id="1"></div>
+      <div class="agujero" id="2"></div>
+      <div class="agujero" id="3"></div>
     </div>
+    <div>
+      <div class="agujero" id="4"></div>
+      <div class="agujero" id="5"></div>
+      <div class="agujero" id="6"></div>
+    </div>
+    <div>
+      <div class="agujero" id="7"></div>
+      <div class="agujero" id="8"></div>
+      <div class="agujero" id="9"></div>
+    </div>
+  </div>
+  <button id="inicio"></button>
+
+  <script src="script.js"></script>
+
 </body>
+
 </html>

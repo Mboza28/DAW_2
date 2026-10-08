@@ -1,5 +1,5 @@
 {
-  "name": "express_1",
+  "name": "Bolonio_Miguel_Consumo_API",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,14 +12,12 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "12.8.1",
+      "version": "12.9.1",
       "onFail": "download"
     }
   },
-  "packageManager": "pnpm@12.8.1",
+  "packageManager": "pnpm@12.9.1",
   "dependencies": {
-    "express": "^5.2.1",
-    "helmet": "^8.3.0",
-    "request": "^2.88.2"
+    "express": "^5.2.1"
   }
 }
