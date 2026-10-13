@@ -1,27 +1,24 @@
 import './App.css'
 import Tarjeta from './components/Tarjeta'
-import imagenMario from './images/mario.png'
-import imagenBowser from './images/bowser.png'
-import imagenDaisy from './images/daisy.png'
-import imagenToad from './images/toad.png'
-import imagenYoshi from './images/yoshi.png'
-import datos from './data/infoPersonajes.js'
+
+import datos from './data/infoPersonajes.jsx'
 
 function App() {
+  
+  const tarjeta = datos.map((personaje) => 
+    <Tarjeta
+    key = {personaje.nombre}
+    nombre = {personaje.nombre}
+    descripcion = {personaje.descripcion}
+    texto = {personaje.texto} 
+    imagen = {personaje.imagen}/>
+  )
 
   return (
     <div className='App'>
       <div className="contenedor-principal">
         <h1>Personajes del SuperMario</h1>
-
-        {for (let index = 0; index < datos.length; index++) {
-          {<Tarjeta
-        nombre = {datos[index].nombre}
-        descripcion = {datos[index].descripcion}
-        texto = {datos[index].texto} 
-        imagen = {}/>}
-          
-        }}
+        {tarjeta}
       </div>
     </div>
   )

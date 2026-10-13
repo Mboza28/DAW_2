@@ -3,13 +3,33 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const datos = require('../bbdd/users')
+const jwt = require('jsonwebtoken')
 
 const router = express.Router();
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
+    const datosForm = req.body;
+    const usuarioExiste = datos.find(usuario => datosForm.correo === usuario.correo);
     
+    if(!usuarioExiste){
+        res.send(`Usuario o contraseña incorrectos`)
+    } else {
+        const passOK = await bcrypt.compare(datosForm.pass, usuarioExiste.pass);
+        if (passOK){
+
+            const infoToken = {
+                correo: usuarioExiste.correo, 
+                rol: usuarioExiste.rol
+            }
+            const token = jwt.sign(infoToken, 'claveDeCifrado', {expiresIn: '1h'})
+            res.json({mensaje:`Login correcto`, token: token})
+
+        } else {
+            res.send(`Usuario o contraseña incorrectos`)
+        }
+    }    
 })
 
 router.post('/registro', async (req, res) => {
