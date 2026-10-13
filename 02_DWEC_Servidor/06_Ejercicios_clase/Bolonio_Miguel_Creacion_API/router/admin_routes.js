@@ -1,0 +1,1 @@
+/** Rutas que requieren de autenticación y autorización (token válido y rol admin en token) */

@@ -1,0 +1,39 @@
+.contenedor-tarjeta{
+    width: 850px;
+    height: 368px;
+    margin: 10px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: aliceblue;
+    box-shadow: 0px 3px 13px 1px rgb(0, 0, 0);
+    border-radius: 20px;
+}
+
+.imagen-tarjeta{
+    height: 80%;
+    width: auto;
+}
+
+.contenedor-texto{
+    text-align: center;
+    padding: 40px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    line-height: 1.5rem;
+}
+
+.nombre-tarjeta{
+    font-size: 2rem;
+}
+
+.descripcion-tarjeta{
+    font-size: 1.3rem;
+    margin-top: 15px;
+    padding-bottom: 30px;
+}
+
+.texto-tarjeta {
+    font-size: 1.1rem;
+    text-align: justify;
+}

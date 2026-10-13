@@ -1,0 +1,1 @@
+/** Rutas que necesitan autenticación token valido */

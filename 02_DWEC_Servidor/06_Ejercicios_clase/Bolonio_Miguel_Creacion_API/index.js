@@ -1,19 +1,15 @@
 const express = require('express');
-const datos = require('./datos');
+const datos = require('./bbdd/users');
+const router = require('./router/public_routes')
+
 const PORT = 4004;
 
 const app = express();
 
+express.urlencoded({ extended: true });
 app.use(express.json());
-
-app.get('/', (req, res) => {
-    res.json(datos);
-});
-
-app.get('/profesores', (req, res) => {
-    console.log(req.params);
-    res.json();
-});
+app.use(express.static('public'));
+app.use('/inicio', router);
 
 app.listen(PORT, () => {
     console.log(`Servidor levantado en http://localhost:${PORT}`);
