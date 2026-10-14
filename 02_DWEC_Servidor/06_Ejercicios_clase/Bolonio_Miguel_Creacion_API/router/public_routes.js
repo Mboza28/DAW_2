@@ -2,19 +2,21 @@
 
 const express = require('express');
 const bcrypt = require('bcrypt');
-const datos = require('../bbdd/users')
-const jwt = require('jsonwebtoken')
+const datos = require('../bbdd/users');
+const jwt = require('jsonwebtoken');
 
 const router = express.Router();
+
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
+const jwt_secreta = 'claveDeCifrado';
 
 router.post('/login', async (req, res) => {
     const datosForm = req.body;
     const usuarioExiste = datos.find(usuario => datosForm.correo === usuario.correo);
     
     if(!usuarioExiste){
-        res.send(`Usuario o contraseña incorrectos`)
+        res.status(401).json({error: 'Usuario o contraseña incorrectos'});
     } else {
         const passOK = await bcrypt.compare(datosForm.pass, usuarioExiste.pass);
         if (passOK){
@@ -23,20 +25,32 @@ router.post('/login', async (req, res) => {
                 correo: usuarioExiste.correo, 
                 rol: usuarioExiste.rol
             }
-            const token = jwt.sign(infoToken, 'claveDeCifrado', {expiresIn: '1h'})
-            res.json({mensaje:`Login correcto`, token: token})
+
+            // Creacion del token con jwt
+            const token = jwt.sign(infoToken, jwt_secreta, {expiresIn: '1h'});
+
+            //Adjuntar el token a una cookie y mandarla al navegador del cliente para poder utilizarlo
+            res.cookie('token', token, { 
+                httpOnly: true, 
+                secure: true 
+            })
+            
+            res.status(200).json({
+                mensaje: "Autenticación exitosa",
+                token_incluido_en_headers: true,
+            });
 
         } else {
-            res.send(`Usuario o contraseña incorrectos`)
+            res.send(`Usuario o contraseña mal`);
         }
     }    
-})
+});
 
 router.post('/registro', async (req, res) => {
     const datosForm = req.body;
     console.log(req.body);
     if(datos.some(usuario => usuario.correo === datosForm.correo)){
-        res.send(`Ya existe un usuario con ese correo. Prueba a iniciar sesion`);
+        res.status(401).json({error: 'Usuario o contraseña incorrectos'})
     } else {
         let password = await generarContra(datosForm.pass);
         let nuevoUsuario = {
@@ -47,15 +61,11 @@ router.post('/registro', async (req, res) => {
         datos.push(nuevoUsuario);
         res.send('Usuario creado con éxito');
     }
-})
+});
 
 async function generarContra(pass) {
     const saltAleatoria = 10;
     const hash = await bcrypt.hash(pass, saltAleatoria);
-
-    console.log('registro');
-    console.log(`Contraseña introducida: ${pass}`);
-    console.log(`Hash generado: ${hash}`);
 
     return hash;
 }
