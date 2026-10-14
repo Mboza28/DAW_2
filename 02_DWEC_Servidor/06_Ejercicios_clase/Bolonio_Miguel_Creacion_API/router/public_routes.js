@@ -7,8 +7,6 @@ const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
-router.use(express.urlencoded({ extended: true }));
-router.use(express.json());
 const jwt_secreta = 'claveDeCifrado';
 
 router.post('/login', async (req, res) => {
@@ -32,7 +30,7 @@ router.post('/login', async (req, res) => {
             //Adjuntar el token a una cookie y mandarla al navegador del cliente para poder utilizarlo
             res.cookie('token', token, { 
                 httpOnly: true, 
-                secure: true 
+                secure: false 
             })
             
             res.status(200).json({
@@ -41,7 +39,7 @@ router.post('/login', async (req, res) => {
             });
 
         } else {
-            res.send(`Usuario o contraseña mal`);
+            res.status(401).json({error: 'Usuario o contraseña incorrectos'});
         }
     }    
 });
@@ -50,7 +48,7 @@ router.post('/registro', async (req, res) => {
     const datosForm = req.body;
     console.log(req.body);
     if(datos.some(usuario => usuario.correo === datosForm.correo)){
-        res.status(401).json({error: 'Usuario o contraseña incorrectos'})
+        res.status(409).json({error: 'El correo ya existe'})
     } else {
         let password = await generarContra(datosForm.pass);
         let nuevoUsuario = {

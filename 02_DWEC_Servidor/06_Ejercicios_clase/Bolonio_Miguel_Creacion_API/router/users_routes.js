@@ -6,7 +6,7 @@ const cookie_parser = require('cookie-parser');
 
 
 const router = express.Router();
-router.use(express.json());
+
 router.use(cookie_parser());
 
 const jwt_secreta = 'claveDeCifrado';
@@ -16,18 +16,17 @@ const verificarUsuario = (req, res, next) => {
     const token = req.cookies.token;
     
     if(!token){
-        res.status(401).json({error: 'Acceso denegado. No se ha encontrado el token de autenticación'});
+        return res.status(401).json({error: 'Acceso denegado. No se ha encontrado el token de autenticación'});  // Uso el return para evitar que siga la ejecucion de la funcion
     }
 
     try {
         const datosToken = jwt.verify(token, jwt_secreta);
         req.usuario = datosToken;
-        next();
+        next(); // Solo ejecuto next y dejo paso a la ruta si la autenticacion es correcta
     } catch(err) {
         res.status(401).json({error: 'Token inválido o expirado.'});
     }
 
-    next();
 }
 
 router.get('/perfil', verificarUsuario, (req, res) => {

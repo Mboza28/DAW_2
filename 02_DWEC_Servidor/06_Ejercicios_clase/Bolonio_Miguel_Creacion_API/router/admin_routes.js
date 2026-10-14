@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const cookie_parser = require('cookie-parser');
 
 const router = express.Router();
-router.use(express.json());
+
 router.use(cookie_parser());
 
 const jwt_secreta = 'claveDeCifrado';
@@ -15,7 +15,7 @@ const verificarUsuario = (req, res, next) => {
     const token = req.cookies.token;
 
     if(!token){
-        res.status(401).json({error: 'Acceso denegado. No se ha encontrado el token de autenticación'});
+        return res.status(401).json({error: 'Acceso denegado. No se ha encontrado el token de autenticación'});
     }
 
     try {
@@ -26,7 +26,6 @@ const verificarUsuario = (req, res, next) => {
         res.status(403).json({error: 'Token inválido o expirado.'});
     }
     
-    next();
 }
 
 const verificarRol = (req, res, next) => {
