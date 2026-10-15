@@ -5,23 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trivial Halloween</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&display=swap" rel="stylesheet">
     
 </head>
 
 <body>
     <header>
-
+        <h1>TRIVIAL HALLOWEEN</h1>
     </header>
 
     <form action="post">
         <label for="nombre-grupo">Nombre del grupo</label>
         <input type="text" name="nombre-grupo" id="input-nombre">
+
         <label for="numero-integrantes">¿Cuántos integrantes tiene el grupo?</label>
         <select name="numero-integrantes" id="numero-integrantes">
-            <option value="3">3</option>
-            <option value="4" selected>4</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
             <option value="5">5</option>
-        <label for="integrante-1">Nombre / Instagram primer integrante</label>
+        </select>
+
+        <label for="integrante-1">Nombre / Instagram primer ingrante</label>
         <input type="text" name="integrante-1" id="integrante" placeholder="INTRODUCE TU NOMBRE O IG">
         <label for="integrante-2">Nombre / Instagram segundo integrante</label>
         <input type="text" name="integrante-2" id="integrante" placeholder="INTRODUCE TU NOMBRE O IG">
@@ -29,7 +33,10 @@
         <input type="text" name="integrante-3" id="integrante" placeholder="INTRODUCE TU NOMBRE O IG">
         <label for="integrante-4">Nombre / Instagram tercero integrante</label>
         <input type="text" name="integrante-4" id="integrante" placeholder="INTRODUCE TU NOMBRE O IG">
+        
         <button submit="">REGISTRAR GRUPO</button>
+
     </form>
+
 </body>
 </html>

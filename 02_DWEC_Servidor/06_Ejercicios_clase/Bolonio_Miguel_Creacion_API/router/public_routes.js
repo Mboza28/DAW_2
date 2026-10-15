@@ -9,7 +9,7 @@ const router = express.Router();
 
 const jwt_secreta = 'claveDeCifrado';
 
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res) =>{
     const datosForm = req.body;
     const usuarioExiste = datos.find(usuario => datosForm.correo === usuario.correo);
     
@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
             const token = jwt.sign(infoToken, jwt_secreta, {expiresIn: '1h'});
 
             //Adjuntar el token a una cookie y mandarla al navegador del cliente para poder utilizarlo
-            res.cookie('token', token, { 
+            res.cookie('micookie', token, { 
                 httpOnly: true, 
                 secure: false 
             })
@@ -61,7 +61,7 @@ router.post('/registro', async (req, res) => {
     }
 });
 
-async function generarContra(pass) {
+async function generarContra() {
     const saltAleatoria = 10;
     const hash = await bcrypt.hash(pass, saltAleatoria);
 
