@@ -6,12 +6,13 @@ import datos from './data/infoPersonajes.jsx'
 function App() {
   
   const tarjeta = datos.map((personaje) => 
-    <Tarjeta
-    key = {personaje.nombre}
+    <Tarjeta key = {personaje.nombre} {...personaje} />
+
+    /** Utilizar el SPREAD ... ayuda a no tener que hacer esto, con la key ya sabe que tiene que pasarle los props
     nombre = {personaje.nombre}
     descripcion = {personaje.descripcion}
     texto = {personaje.texto} 
-    imagen = {personaje.imagen}/>
+    imagen = {personaje.imagen}*/
   )
 
   return (

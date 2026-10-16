@@ -1,6 +1,6 @@
 import '../styles/Tarjeta.css'
 
-function Tarjeta(props) {
+function Tarjeta({nombre, imagen, descripcion, texto}) {
   return (
     <div className="contenedor-tarjeta">
       <img 
