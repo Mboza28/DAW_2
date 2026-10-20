@@ -6,30 +6,32 @@
     <title>Trivial Halloween</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&display=swap" rel="stylesheet">
-    <script src="./js/script.js" type="module"></script>
+    <script type="module" src="./js/app.js"></script>
 </head>
 
 <body>
-    <header>
-        <h1>TRIVIAL HALLOWEEN</h1>
-    </header>
+    <section id="pantallaRegistro">
+        <header>
+            <h1>TRIVIAL HALLOWEEN</h1>
+        </header>
 
-    <form>
-        <label for="nombre-grupo">Nombre del grupo</label>
-        <input type="text" name="nombre-grupo" id="grupo">
+        <form>
+            <label for="nombre-grupo">Nombre del grupo</label>
+            <input type="text" name="nombre-grupo" id="grupo">
 
-        <label for="numero-integrantes">¿Cuántos integrantes tiene el grupo?</label>
-        <select name="numero-integrantes" id="numero-integrantes">
-            <option value="3" selected>3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
+            <label for="numero-integrantes">¿Cuántos integrantes tiene el grupo?</label>
+            <select name="numero-integrantes" id="numero-integrantes">
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
 
-        <div id="contenedor-integrantes"></div>
-        
-        <button id="empezar">EMPEZAR JUEGO</button>
+            <div id="contenedor-integrantes"></div>
+            
+            <button id="empezar">EMPEZAR JUEGO</button>
 
-    </form>
+        </form>
+    </section>
 
 </body>
 </html>

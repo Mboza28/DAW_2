@@ -28,7 +28,7 @@ router.post('/login', async (req, res) =>{
             const token = jwt.sign(infoToken, jwt_secreta, {expiresIn: '1h'});
 
             //Adjuntar el token a una cookie y mandarla al navegador del cliente para poder utilizarlo
-            res.cookie('micookie', token, { 
+            res.cookie('token', token, { 
                 httpOnly: true, 
                 secure: false 
             })
@@ -61,9 +61,9 @@ router.post('/registro', async (req, res) => {
     }
 });
 
-async function generarContra() {
+async function generarContra(password) {
     const saltAleatoria = 10;
-    const hash = await bcrypt.hash(pass, saltAleatoria);
+    const hash = await bcrypt.hash(password, saltAleatoria);
 
     return hash;
 }

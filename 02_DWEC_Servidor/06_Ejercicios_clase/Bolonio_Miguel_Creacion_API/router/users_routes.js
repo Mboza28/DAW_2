@@ -3,7 +3,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const cookie_parser = require('cookie-parser');
-
+const axios = require('axios');
 
 const router = express.Router();
 
@@ -38,6 +38,38 @@ router.get('/perfil', verificarUsuario, (req, res) => {
 
 router.get('/logout', (req, res) => {
     res.clearCookie('token').json({mensaje: "Sesión cerrada correctamente"});
+})
+
+router.get('/githubUserInfo', verificarUsuario, async (req, res) => {
+    try{
+        const respuesta = await axios.get('https://api.github.com/users/MBoza28', {
+            headers: { 'Authorization': `Bearer ${process.env.TOKEN_GITHUB}` }
+        });
+
+        console.log(respuesta.data);
+
+        res.status(200).json(respuesta.data);
+    }
+    catch (error){
+        console.log("Error consumiendo la la API de GitHub:", error.message);
+        res.status(500).json({error: 'Fallo al conectar con el servidor de GitHub'})
+    }
+})
+
+router.get('/githubUserRepos', verificarUsuario, async (req, res) => {
+    try{
+        const respuesta = await axios.get('https://api.github.com/users/MBoza28/repos', {
+            headers: { 'Authorization': `Bearer ${process.env.TOKEN_GITHUB}` }
+        });
+
+        console.log(respuesta.data);
+
+        res.status(200).json(respuesta.data);
+    }
+    catch (error){
+        console.log("Error consumiendo la la API de GitHub:", error.message);
+        res.status(500).json({error: 'Fallo al conectar con el servidor de GitHub'})
+    }
 })
 
 module.exports = router;
