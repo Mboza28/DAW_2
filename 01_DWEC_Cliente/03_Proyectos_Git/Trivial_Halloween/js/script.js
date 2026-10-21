@@ -1,11 +1,3 @@
-import {sumarCalabaza, 
-        quitarCalabaza, 
-        pintarEquipoLateral, 
-        pintarCronometroLateral, 
-        setCronometro, 
-        pintarPuntuacion } 
-from './state.js'
-
 import {infoGrupos} from '../assets/data/usuarios.js'
 
 const seleccionIntegrantes = document.getElementById('numero-integrantes');
@@ -55,6 +47,7 @@ const iniciarJuego = () => {
     infoGrupos.push(nuevoGrupo);
     console.log(infoGrupos);
 }
+
 
 const validarInputs = () => {
     const grupo = document.getElementById('grupo');
