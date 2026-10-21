@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/login.js" defer></script>
 </head>
-
 <body>
-
     <div class="contenedor">
-        <h1 class="titulo">Login</h1>
-        <form action="http://localhost:4004/inicio/login" method="post">
-            <label for="correo" class="etiqueta">Correo:</label>
-            <input type="text" name="correo" id="correo" placeholder="Introduce tu correo">
-            <label for="pass" class="etiqueta">Contraseña:</label>
-            <input type="text" name="pass" id="password" placeholder="Contraseña">
-            <button type="submit" id="btn-login">Iniciar sesión</button>
+        <h2 class="titulo">Acceso de Usuarios</h2>
+        
+        <form id="formulario-login">
+            <label for="correo">Correo Electrónico</label>
+            <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+            
+            <label for="pass">Contraseña</label>
+            <input type="password" id="pass" name="pass" placeholder="********" required>
+            
+            <button type="submit">Entrar</button>
         </form>
-        <p>Si aún no tienes una cuenta <br><a href="register.html">REGISTRATE AQUI</a>
-    </div>
 
+        <p id="mensaje-error"></p>
+    </div>    
 </body>
 </html>

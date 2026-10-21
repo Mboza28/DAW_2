@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {infoGrupos} from '../assets/data/usuarios.js'
 
 const seleccionIntegrantes = document.getElementById('numero-integrantes');
@@ -84,3 +85,5 @@ const iniciarApp = () => {
 }
 
 window.addEventListener("DOMContentLoaded", iniciarApp);
+=======
+>>>>>>> ea711f14c8a0c65356cccd9dd828f9d931ef7d31

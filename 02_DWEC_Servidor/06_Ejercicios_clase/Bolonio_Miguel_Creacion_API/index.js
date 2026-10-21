@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const router_public = require('./router/public_routes');
 const router_user = require('./router/users_routes');
