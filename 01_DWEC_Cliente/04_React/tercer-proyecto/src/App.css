@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  background-color: #C31431;
+  min-height: 100vh;
+  padding-top: 10px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.nebrija-logo-contenedor {
+  width: 100%;
+  height: auto;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nebrija-logo {
+  height: 120px;
+}
+
+.contenedor-calculadora {
+  width: 400px;
+  height: auto;
+  padding: 14px;
+  background-color: whitesmoke;
+  border-radius: 20px;
+  border: 2px solid black;
+}
+
+.fila {
+  margin: 4px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
