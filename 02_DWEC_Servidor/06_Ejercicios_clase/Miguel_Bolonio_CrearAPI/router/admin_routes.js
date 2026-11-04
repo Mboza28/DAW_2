@@ -40,4 +40,6 @@ router.get('/panelControl', verificarUsuario, verificarRol, (req, res) => {
     res.status(200).json(({mensaje: `Bienvenido al panel de administrador ${req.usuario.correo}`}))
 })
 
+
+
 module.exports = router;
