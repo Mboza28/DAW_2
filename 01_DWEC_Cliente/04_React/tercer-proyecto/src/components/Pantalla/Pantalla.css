@@ -9,6 +9,6 @@
     font-size: 30px;
     padding: 11px 30px 11px 11px;
     margin-bottom: 19px;
-    box-shadow: -1px 2px 7px 1px black;
+    box-shadow: -1px 1px 7px -1px black;
     overflow: hidden;
 }

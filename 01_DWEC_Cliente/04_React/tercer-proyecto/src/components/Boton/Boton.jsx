@@ -18,7 +18,7 @@ export default Boton
 // props.children hace referencia a lo que pongamos dentro de las llaves cuando usamos el 
 // componente.
 
-// La funcion isNaN
+// La funcion isNaN arroja un true o false dependiendo de si el valor que le pasamos es o no un numero.
 
 // La funcion del onClick se ejecuta constantemente por los parentesis, para evitar este
 // comportamiento, lo que hacemos es envolverla en una funcion flecha, para que no se ejecute
