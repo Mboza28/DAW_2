@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header-contenedor {
+  display: flex;
+  height: 15%;
+  flex-direction: row;
+  
+}
