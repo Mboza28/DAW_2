@@ -44,9 +44,14 @@ function App() {
 
   const actualizarInput = (valor) => {
     if(nuevoCalculo){
-      setInput(valor);
-      setNuevoCalculo(false);
-    }else{
+      if(operadores.includes(valor)){
+        setInput(input + valor);
+        setNuevoCalculo(false);
+      } else {
+        setInput(valor);
+        setNuevoCalculo(false);
+      }
+    } else {
       if(comprobarOperadores(valor)){
         alert('No puedes pulsar dos operadores seguidos');
       }else if (comprobarPuntosSeguidos(valor)){
