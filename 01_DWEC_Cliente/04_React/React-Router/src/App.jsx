@@ -1,14 +1,17 @@
 import './App.css'
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+
+// forma antigua ------> import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+
+import { RouterProvider, createBrowserRouter, Outlet, Routes, Route } from 'react-router-dom'
 import Nav from './components/Nav/Nav'
 import Home from './pages/Home'
 import About from './pages/About'
 import Products from './pages/Products'
-
+import Footer from './components/Footer/Footer'
 
 // Router es el contenedor de rutas, que va a contener a cada Route individual
 // Link se encarga de las redirecciones para eliminar componentes y traer componentes nuevos
-//  Hay dos opciones dependiendo de como queramos componetizar la aplicación: 
+// Hay dos opciones dependiendo de como queramos componetizar la aplicación: 
 //    - Situar los elementos estáticos fuera de las etiquetas de Router, por ejemplo, el header, footer y navbar.
 //    - Componetizar todos los elementos hasta los estáticos o reutilizar alguno de otro proyecto.
 
@@ -20,21 +23,61 @@ import Products from './pages/Products'
 // atributo element que es el elemento que tiene que renderizar al ir a esa direccion
 
 
+// A partir de React-Router 6 podemos manejar la carga de datos y tener manejo de errores dentro de las rutas
+// Con createBrowserRouter creamos el Router y se lo damos al RouterProvider que es el que lo usara.
+// Ahora podremos en Route tener aparte de path y element, el atributo children que seria una ruta anidada dentro de la ruta padre
+// Las rutas hijas se van a renderizar dentro del componente Outlet
+
+
 function App() {
 
+  // La funcion createBrowserRouter devuelve un array de objetos, cada uno es una ruta que tendremos que definir en la creacion
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: (
+        <div className='App'>
+          <Nav></Nav>
+          <Outlet></Outlet>
+          <Footer></Footer>
+        </div>
+      ),
+      children: [
+        {
+          path:'Home',
+          element: <Home></Home>
+        },
+        {
+          path:'About',
+          element: <About></About>
+        },
+        {
+          path:'Products',
+          element: <Products></Products>
+        }
+      ]
+    }
+  ]);
+
   return (
+    <RouterProvider router={router}></RouterProvider>
+  )
+
+  // Esto seria con la forma antigua
+  /**return (
+
     <div className='App'>
       <Router>
         <Nav></Nav>
         <Routes>
           <Route path='/' element={<Home></Home>}/>
           <Route path='/about' element={<About></About>}/>
-          <Route path='/products' element={<Products></Products>}/>
+          <Route path='/products' element={<Products></Products>} children={}/>
         </Routes>
 
       </Router>
-    </div>
-  )
+    </div> 
+  )*/
 }
 
 export default App
