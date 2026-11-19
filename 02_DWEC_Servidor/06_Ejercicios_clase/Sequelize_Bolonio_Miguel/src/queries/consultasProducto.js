@@ -57,8 +57,9 @@ async function buscarProductosCompuesta() {
   });
 }
 
-// Consulta de varias tablas: de cada producto el titulo, precio y estado con su vendedor ( nombre, reputacion y si esta verificado )
-// y la categoria a la que pertenece
+// Consulta de varias tablas: de cada producto el titulo, precio y estado 
+// con su vendedor ( nombre, reputacion y si esta verificado ) y la 
+// categoria a la que pertenece
 async function obtenerProductosyCategoria() {
   return await Producto.findAll({
     attributes: ['titulo', 'precio', 'estado_publi'],

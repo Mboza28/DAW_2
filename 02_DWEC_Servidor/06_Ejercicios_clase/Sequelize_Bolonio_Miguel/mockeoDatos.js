@@ -8,7 +8,6 @@ async function insertarDatos() {
     await sequelize.sync({ force: true });
     console.log('Tablas sincronizadas.');
 
-
     const usuarios = await Usuario.bulkCreate([
       {
         email: 'laura.gomez@example.com',

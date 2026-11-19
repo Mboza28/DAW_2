@@ -67,3 +67,4 @@ const Producto = sequelize.define('Producto', {
 });
 
 module.exports = Producto
+
