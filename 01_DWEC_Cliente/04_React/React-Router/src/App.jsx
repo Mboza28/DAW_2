@@ -10,6 +10,7 @@ import Products from './pages/Products'
 import Footer from './components/Footer/Footer'
 import Users from './pages/Users'
 import ErrorPage from './pages/ErrorPage'
+import ProductDetail from "./pages/ProductDetail";
 
 /** Router es el contenedor de rutas, que va a contener a cada Route individual
     Link se encarga de las redirecciones para eliminar componentes y traer componentes nuevos
@@ -70,6 +71,10 @@ function App() {
         {
           path:'Products',
           element: <Products></Products>
+        },
+        {
+          path: '/products/:id',
+          element: <ProductDetail></ProductDetail>
         }
       ]
     }
